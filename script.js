@@ -3,9 +3,15 @@ const menuButton=document.querySelector('.menu-button');
 const nav=document.querySelector('.site-nav');
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const updateHeader=()=>header.classList.toggle('is-scrolled',window.scrollY>40);
+const scrubHero=document.querySelector('.rd-scrub');
+const updateHeader=()=>{
+  const threshold=scrubHero?Math.max(40,scrubHero.offsetHeight-window.innerHeight+40):40;
+  header.classList.toggle('is-scrolled',window.scrollY>threshold);
+};
 updateHeader();
 window.addEventListener('scroll',updateHeader,{passive:true});
+window.addEventListener('resize',updateHeader,{passive:true});
+window.addEventListener('load',updateHeader,{once:true});
 
 menuButton.addEventListener('click',()=>{
   const open=menuButton.getAttribute('aria-expanded')==='true';
