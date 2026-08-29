@@ -51,8 +51,8 @@ const formatPrice=value=>new Intl.NumberFormat('ko-KR').format(value)+'원';
 const FEATURED_PRODUCT_NAME='러브컨츄리 뜨개가방 코바늘 가방뜨기 뜨개질 diy 데일리 빅백';
 const getCuratedProducts=products=>{
   const featured=products.find(product=>product.name===FEATURED_PRODUCT_NAME);
-  const rest=products.filter(product=>product!==featured).slice(0,5);
-  return featured?[featured,...rest]:products.slice(0,6);
+  const rest=products.filter(product=>product!==featured).slice(0,6);
+  return featured?[featured,...rest]:products.slice(0,7);
 };
 const addProductStructuredData=products=>{
   if(!products.length)return;
@@ -121,7 +121,7 @@ const loadProducts=async()=>{
     lists.forEach(list=>{const limit=Number(list.dataset.limit)||products.length;products.slice(0,limit).forEach(product=>list.append(createProductCard(product)));observeReveals(list)});
     const curated=getCuratedProducts(products);const featured=curated[0];const rest=curated.slice(1);
     featureSlots.forEach(slot=>{if(featured)slot.append(createFeaturedProduct(featured));observeReveals(slot)});
-    curatedLists.forEach(list=>{const limit=Number(list.dataset.limit)||5;rest.slice(0,limit).forEach(product=>list.append(createProductCard(product)));observeReveals(list)});
+    curatedLists.forEach(list=>{const limit=Number(list.dataset.limit)||6;rest.slice(0,limit).forEach(product=>list.append(createProductCard(product)));observeReveals(list)});
     statuses.forEach(el=>el.textContent='');
   }catch(error){statuses.forEach(el=>el.textContent='제품을 불러오지 못했어요. 잠시 후 다시 시도해주세요.')}
 };
