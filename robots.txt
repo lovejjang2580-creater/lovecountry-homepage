@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lovecountry-homepage.vercel.app/sitemap.xml

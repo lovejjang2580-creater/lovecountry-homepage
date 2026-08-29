@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
+  <meta name="description" content="러브컨츄리가 전하는 초보 뜨개 가이드와 만드는 사람의 이야기를 읽어보세요.">
   <meta name="author" content="">
   <meta name="theme-color" content="#f4f0e5">
-  <link rel="canonical" href="">
+  <link rel="canonical" href="https://lovecountry-homepage.vercel.app/story/post.html">
   <meta property="og:type" content="article">
   <meta property="og:title" content="">
   <meta property="og:description" content="">
   <meta property="og:url" content="">
-  <title>이야기 | 러브컨츄리</title>
+  <title>뜨개 이야기 | 러브컨츄리</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -51,7 +51,7 @@
 
   <script>
   (function(){
-    var main=document.getElementById('post-content');var heading=document.getElementById('post-heading');
+    var siteOrigin='https://lovecountry-homepage.vercel.app';var main=document.getElementById('post-content');var heading=document.getElementById('post-heading');
     function el(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=text;return n}
     function fmtDate(s){var d=new Date(s+'T00:00:00');if(isNaN(d))return s||'';return d.getFullYear()+'. '+(d.getMonth()+1)+'. '+d.getDate()+'.'}
     function appendInline(node,text){
@@ -73,11 +73,11 @@
     function setAttr(sel,attr,val){var n=document.querySelector(sel);if(n)n.setAttribute(attr,val)}
     function addLd(obj){var ld=document.createElement('script');ld.type='application/ld+json';ld.textContent=JSON.stringify(obj);document.head.append(ld)}
     function setMeta(post){
-      var title=String(post.title||'이야기');var desc=String(post.description||post.summary||'').slice(0,160);var url=location.origin+location.pathname+'?id='+encodeURIComponent(post.id||'');var author=String(post.author||'').trim();
+      var title=String(post.title||'이야기');var desc=String(post.description||post.summary||'').slice(0,160);var url=siteOrigin+location.pathname+'?id='+encodeURIComponent(post.id||'');var author=String(post.author||'').trim();
       document.title=title+' | 러브컨츄리';setAttr('meta[name="description"]','content',desc);setAttr('meta[name="author"]','content',author);setAttr('link[rel="canonical"]','href',url);setAttr('meta[property="og:title"]','content',title);setAttr('meta[property="og:description"]','content',desc);setAttr('meta[property="og:url"]','content',url);
       var article={'@context':'https://schema.org','@type':'BlogPosting',headline:title,description:desc,datePublished:String(post.date||''),dateModified:String(post.updated||post.date||''),mainEntityOfPage:url,keywords:Array.isArray(post.tags)?post.tags.map(String).join(', '):''};if(author)article.author={'@type':'Person',name:author};addLd(article);
       var faq=Array.isArray(post.faq)?post.faq.filter(function(f){return f&&f.q&&f.a}):[];if(faq.length)addLd({'@context':'https://schema.org','@type':'FAQPage',mainEntity:faq.map(function(f){return{'@type':'Question',name:String(f.q),acceptedAnswer:{'@type':'Answer',text:String(f.a)}}})});
-      addLd({'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'이야기',item:location.origin+location.pathname.replace(/post\.html$/,'')},{'@type':'ListItem',position:2,name:title,item:url}]});
+      addLd({'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'이야기',item:siteOrigin+location.pathname.replace(/post\.html$/,'')},{'@type':'ListItem',position:2,name:title,item:url}]});
     }
     function renderFaq(faq){var sec=el('section','story-faq');sec.append(el('h2',null,'자주 묻는 질문'));faq.forEach(function(f){var d=el('details');d.append(el('summary',null,String(f.q)),el('p',null,String(f.a)));sec.append(d)});return sec}
     function renderSources(sources){var sec=el('section','story-sources');sec.append(el('h2',null,'참고·출처'));var ol=el('ol');sources.forEach(function(s){var li=el('li');if(s&&s.url){var a=el('a',null,String(s.title||s.url));a.href=String(s.url);a.rel='noopener';a.target='_blank';li.append(a)}else li.textContent=String(s&&s.title||s||'');ol.append(li)});sec.append(ol);return sec}

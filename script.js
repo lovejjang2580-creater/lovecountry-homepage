@@ -48,6 +48,34 @@ if(reducedMotion){
 }
 
 const formatPrice=value=>new Intl.NumberFormat('ko-KR').format(value)+'원';
+const addProductStructuredData=products=>{
+  const list=document.querySelector('[data-product-list]');if(!list||!products.length)return;
+  const limit=Number(list.dataset.limit)||products.length;
+  const visibleProducts=products.slice(0,limit);
+  const data={
+    '@context':'https://schema.org',
+    '@type':'ItemList',
+    name:document.body.classList.contains('products-page')?'러브컨츄리 전체 제품':'러브컨츄리 대표 제품',
+    numberOfItems:visibleProducts.length,
+    itemListElement:visibleProducts.map((product,index)=>({
+      '@type':'ListItem',
+      position:index+1,
+      item:{
+        '@type':'Product',
+        name:String(product.name),
+        image:String(product.image),
+        brand:{'@type':'Brand',name:'러브컨츄리'},
+        offers:{
+          '@type':'Offer',
+          url:String(product.url),
+          priceCurrency:'KRW',
+          price:String(product.price)
+        }
+      }
+    }))
+  };
+  const script=document.createElement('script');script.type='application/ld+json';script.id='product-structured-data';script.textContent=JSON.stringify(data);document.head.append(script);
+};
 const createProductCard=product=>{
   const card=document.createElement('article');card.className='catalog-card reveal';
   const imageLink=document.createElement('a');imageLink.className='catalog-image';imageLink.href=product.url;imageLink.target='_blank';imageLink.rel='noopener noreferrer';imageLink.setAttribute('aria-label',product.name+' 구매 페이지 열기');
@@ -65,7 +93,7 @@ const loadProducts=async()=>{
   const statuses=document.querySelectorAll('[data-product-status]');
   try{
     const response=await fetch('products.json');if(!response.ok)throw new Error('product data');
-    const data=await response.json();const products=data.products;
+    const data=await response.json();const products=data.products;addProductStructuredData(products);
     lists.forEach(list=>{const limit=Number(list.dataset.limit)||products.length;products.slice(0,limit).forEach(product=>list.append(createProductCard(product)));observeReveals(list)});
     document.querySelectorAll('[data-product-count]').forEach(el=>el.textContent=products.length+' ITEMS');
     statuses.forEach(el=>el.textContent='');

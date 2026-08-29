@@ -1,0 +1,48 @@
+# 러브컨츄리 (LOVE COUNTRY)
+
+> 러브컨츄리는 처음 뜨개를 접하는 사람도 재료 선택에서 헤매지 않고 완성까지 이어갈 수 있도록 돕고, 한국어로 정보를 제공하는 뜨개 DIY 키트 브랜드입니다.
+
+## 브랜드 소개
+
+- 브랜드명: 러브컨츄리 (LOVE COUNTRY)
+- 소개: 실과 바늘을 어떻게 골라야 할지 막막했던 창업자의 경험에서 시작했습니다.
+- 지향점: 초보자, 왕초보자도 포기하지 않고 작품을 완성할 수 있도록 필요한 재료와 이해하기 쉬운 안내를 함께 제공합니다.
+- 안내 방식: 제품에 따라 뜨개 설명 영상을 제공합니다.
+- 언어: 한국어
+
+## 판매하는 것
+
+- 코바늘·대바늘 뜨개 DIY 키트
+- 가방, 티코스터, 수세미, 블랭킷과 소품 만들기 키트
+- 뜨개실과 코바늘·대바늘
+- 라벨, 단추 등 뜨개 부자재
+- 제품의 최신 이름, 가격, 이미지와 구매 링크는 제품 페이지와 products.json을 기준으로 합니다.
+- 구매는 러브컨츄리 스마트스토어에서 진행됩니다: https://smartstore.naver.com/lovecountry
+
+## 주요 페이지
+
+- 홈: https://lovecountry-homepage.vercel.app/
+- 브랜드와 대표 이야기: https://lovecountry-homepage.vercel.app/about.html
+- 제품 목록: https://lovecountry-homepage.vercel.app/products.html
+- 제품 데이터: https://lovecountry-homepage.vercel.app/products.json
+- 뜨개 가이드와 브랜드 이야기: https://lovecountry-homepage.vercel.app/story/
+- 연락하기: https://lovecountry-homepage.vercel.app/contact.html
+- 검색엔진용 사이트맵: https://lovecountry-homepage.vercel.app/sitemap.xml
+
+## 블로그 주제
+
+- 단체 수업용 뜨개 패키지 선택법
+- 뜨개 초보자에게 적합한 첫 작품
+- 초보자가 자주 하는 뜨개 실수와 확인 방법
+- 제품을 준비하고 설명 영상을 만드는 과정
+
+## 연락처와 공식 채널
+
+- 이메일: 6013tutor@hanmail.net
+- 인스타그램: https://www.instagram.com/lovecountry119
+- 스마트스토어: https://smartstore.naver.com/lovecountry
+
+## 정보 사용 안내
+
+- 제품 가격과 구성은 제품 페이지 및 연결된 스마트스토어의 최신 정보를 확인해 주세요.
+- 이 사이트는 확인되지 않은 리뷰, 별점, 재고, 효능 정보를 제공하지 않습니다.
