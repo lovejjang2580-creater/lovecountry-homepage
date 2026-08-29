@@ -72,3 +72,26 @@ const loadProducts=async()=>{
   }catch(error){statuses.forEach(el=>el.textContent='제품을 불러오지 못했어요. 잠시 후 다시 시도해주세요.')}
 };
 loadProducts();
+
+const formatStoryDate=value=>String(value||'').replaceAll('-','.');
+const createStoryCard=post=>{
+  const link=document.createElement('a');link.className='story reveal';
+  const customUrl=String(post.url||'');link.href=customUrl?(/^https?:\/\//.test(customUrl)||customUrl.startsWith('/')?customUrl:'story/'+customUrl):'story/post.html?id='+encodeURIComponent(post.id||'');
+  const date=document.createElement('time');date.dateTime=String(post.date||'');date.textContent=formatStoryDate(post.date);
+  const copy=document.createElement('div');copy.className='story-card-copy';
+  const title=document.createElement('h3');title.textContent=String(post.title||'(제목 없음)');copy.append(title);
+  if(post.summary){const summary=document.createElement('p');summary.textContent=String(post.summary);copy.append(summary)}
+  const arrow=document.createElement('span');arrow.textContent='읽기 ↗';link.append(date,copy,arrow);return link;
+};
+
+const loadStories=async()=>{
+  const lists=document.querySelectorAll('[data-story-list]');if(!lists.length)return;
+  const statuses=document.querySelectorAll('[data-story-status]');
+  try{
+    const response=await fetch('story/posts.json',{cache:'no-store'});if(!response.ok)throw new Error('story data');
+    const posts=await response.json();const sorted=posts.slice().sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')));
+    lists.forEach(list=>{const limit=Number(list.dataset.limit)||sorted.length;sorted.slice(0,limit).forEach(post=>list.append(createStoryCard(post)));observeReveals(list)});
+    statuses.forEach(el=>el.textContent='');
+  }catch(error){statuses.forEach(el=>el.textContent='이야기를 불러오지 못했어요. 잠시 후 다시 시도해주세요.')}
+};
+loadStories();

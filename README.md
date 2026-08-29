@@ -16,6 +16,10 @@ python3 -m http.server 8000
 - `about.html` — 브랜드를 시작한 사람의 이야기
 - `products.html` — 전체 제품 목록
 - `products.json` — 제품명, 가격, 이미지 주소, 구매 링크 데이터
+- `story/index.html` — 이야기 목록
+- `story/post.html` — 이야기 상세
+- `story/posts.json` — 블로그 글 데이터
+- `story/admin.html` — GitHub와 연결해 글을 관리하는 원본 도구
 - `styles.css` — 반응형 디자인과 접근성 스타일
 - `script.js` — 모바일 메뉴, 스크롤 효과, 제품 목록 불러오기
 - `assets/` — 사이트 이미지
@@ -34,3 +38,7 @@ python3 -m http.server 8000
 ```
 
 가격은 쉼표와 `원`을 제외한 숫자로 입력하세요. 사이트에서 자동으로 `10,000원`처럼 표시합니다.
+
+## 블로그 글 관리
+
+`story/posts.json`에 글을 추가하면 이야기 목록과 홈페이지의 최신 글 영역이 함께 갱신됩니다. 홈페이지에는 날짜가 최신인 글을 최대 3개까지 자동으로 표시합니다. 브라우저에서 `story/admin.html`을 열어 GitHub 저장소와 연결하면 글을 작성하고 수정할 수도 있습니다.

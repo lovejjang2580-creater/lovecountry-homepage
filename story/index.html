@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="러브컨츄리가 뜨개와 마음에 관해 기록하는 이야기입니다.">
+  <meta name="theme-color" content="#f4f0e5">
+  <title>이야기 | 러브컨츄리</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../script.js" defer></script>
+</head>
+<body class="story-page">
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="러브컨츄리 홈"><span class="brand-knot" aria-hidden="true"></span><span>러브컨츄리</span></a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span class="sr-only">메뉴 열기</span></button>
+    <nav id="site-nav" class="site-nav" aria-label="주요 메뉴">
+      <a href="../about.html">내 소개</a><a href="../products.html">제품</a><a href="./" aria-current="page">이야기</a><a href="../index.html#contact">연락하기</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="story-hero" aria-labelledby="story-page-title">
+      <div class="reveal">
+        <p class="eyebrow">NOTES FROM LOVE COUNTRY</p>
+        <h1 id="story-page-title">한 코씩 쌓이는<br>우리의 이야기</h1>
+      </div>
+      <p class="reveal">만드는 마음과 뜨개로 만난 사람들의<br>기록을 천천히 쌓아갑니다.</p>
+    </section>
+    <section class="story-index-section" aria-label="블로그 글 목록">
+      <div class="story-index-meta reveal"><span>JOURNAL</span><a href="admin.html">글 관리 ↗</a></div>
+      <ul class="story-index-list" id="list" aria-live="polite"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="../index.html"><span class="brand-knot" aria-hidden="true"></span><span>러브컨츄리</span></a>
+    <p>서두르지 않고,<br>좋은 마음을 한 코씩 짓습니다.</p>
+    <div><span>© 2026 LOVE COUNTRY</span><a href="#">INSTAGRAM</a><a href="./">BLOG</a></div>
+  </footer>
+
+  <script>
+  (function(){
+    var list=document.getElementById('list');
+    function el(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=text;return n}
+    function fmtDate(s){var d=new Date(s+'T00:00:00');if(isNaN(d))return s||'';return d.getFullYear()+'. '+(d.getMonth()+1)+'. '+d.getDate()+'.'}
+    function render(posts){
+      if(!Array.isArray(posts)||!posts.length){var empty=el('div','story-empty');empty.append(el('strong',null,'아직 올라온 글이 없습니다'),document.createTextNode('첫 번째 이야기를 준비하고 있어요. 곧 만나요.'));list.replaceWith(empty);return}
+      posts.slice().sort(function(a,b){return String(b.date||'').localeCompare(String(a.date||''))}).forEach(function(p){
+        var li=el('li','story-index-card reveal is-visible');var a=el('a');a.href=p.url?String(p.url):'post.html?id='+encodeURIComponent(p.id||'');
+        var t=el('time',null,fmtDate(p.date));t.setAttribute('datetime',String(p.date||''));
+        var copy=el('div','story-index-copy');copy.append(el('h2',null,String(p.title||'(제목 없음)')));if(p.summary)copy.append(el('p',null,String(p.summary)));
+        a.append(t,copy,el('span','story-arrow','읽기 ↗'));li.append(a);list.append(li);
+      });
+    }
+    fetch('posts.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(render).catch(function(){list.replaceWith(el('div','story-empty','글 목록을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.'))});
+  })();
+  </script>
+</body>
+</html>
