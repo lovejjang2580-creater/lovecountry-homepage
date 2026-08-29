@@ -92,7 +92,7 @@ const createProductCard=product=>{
   const kicker=document.createElement('p');kicker.className='catalog-kicker';kicker.textContent=product.tagline||'오늘의 뜨개거리';
   const name=document.createElement('h2');name.textContent=product.name;
   const price=document.createElement('p');price.className='catalog-price';price.textContent=formatPrice(product.price);
-  const buy=document.createElement('a');buy.className='buy-button';buy.href=product.url;buy.target='_blank';buy.rel='noopener noreferrer';buy.innerHTML='<span>구매하기</span><span aria-hidden="true">↗</span>';
+  const buy=document.createElement('button');buy.type='button';buy.className='buy-button';buy.setAttribute('data-cart-add','');buy.dataset.name=product.name;buy.dataset.price=String(product.price);buy.dataset.url=product.url;buy.innerHTML='<span>장바구니 담기</span><span aria-hidden="true">+</span>';
   body.append(kicker,name,price,buy);card.append(imageLink,body);return card;
 };
 
@@ -105,7 +105,7 @@ const createFeaturedProduct=product=>{
   const tagline=document.createElement('p');tagline.className='curated-tagline';tagline.textContent=product.tagline||'초보자도 할 수 있는 뜨개 패키지';
   const name=document.createElement('h2');name.textContent=product.name;
   const price=document.createElement('p');price.className='curated-feature-price';price.textContent=formatPrice(product.price);
-  const buy=document.createElement('a');buy.className='curated-buy-button';buy.href=product.url;buy.target='_blank';buy.rel='noopener noreferrer';buy.innerHTML='<span>이 키트 구매하기</span><span aria-hidden="true">↗</span>';
+  const buy=document.createElement('button');buy.type='button';buy.className='curated-buy-button';buy.setAttribute('data-cart-add','');buy.dataset.name=product.name;buy.dataset.price=String(product.price);buy.dataset.url=product.url;buy.innerHTML='<span>이 키트 장바구니 담기</span><span aria-hidden="true">+</span>';
   body.append(label,tagline,name,price,buy);article.append(imageLink,body);return article;
 };
 

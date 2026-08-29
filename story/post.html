@@ -18,6 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
   <script src="../script.js" defer></script>
+  <link rel="stylesheet" href="../assets/cart.css">
 </head>
 <body class="story-page story-post-page">
   <a class="skip-link" href="#main">본문으로 바로가기</a>
@@ -93,5 +94,6 @@
     fetch('posts.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(render).catch(notFound);
   })();
   </script>
+  <script src="../assets/cart.js" defer></script>
 </body>
 </html>
