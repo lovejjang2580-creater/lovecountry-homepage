@@ -54,9 +54,19 @@
     var main=document.getElementById('post-content');var heading=document.getElementById('post-heading');
     function el(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=text;return n}
     function fmtDate(s){var d=new Date(s+'T00:00:00');if(isNaN(d))return s||'';return d.getFullYear()+'. '+(d.getMonth()+1)+'. '+d.getDate()+'.'}
+    function appendInline(node,text){
+      var re=/\[([^\]]+)\]\((https?:\/\/[^\s)]+|\.\.\/[^\s)]+)\)/g;var last=0;var match;
+      while((match=re.exec(text))){
+        if(match.index>last)node.append(document.createTextNode(text.slice(last,match.index)));
+        var a=el('a',null,match[1]);a.href=match[2];
+        if(/^https?:\/\//.test(match[2])){a.target='_blank';a.rel='noopener noreferrer'}
+        node.append(a);last=re.lastIndex;
+      }
+      if(last<text.length)node.append(document.createTextNode(text.slice(last)));
+    }
     function renderBody(src){
       var box=el('div','story-post-body');var blocks=String(src||'').replace(/\r\n/g,'\n').split(/\n\s*\n/);
-      blocks.forEach(function(block){block=block.trim();if(!block)return;var lines=block.split('\n');if(lines.every(function(l){return /^- /.test(l.trim())})){var ul=el('ul');lines.forEach(function(l){ul.append(el('li',null,l.trim().slice(2)))});box.append(ul)}else if(/^## /.test(block)){box.append(el('h2',null,block.slice(3).trim()))}else{box.append(el('p',null,block))}});return box;
+      blocks.forEach(function(block){block=block.trim();if(!block)return;var lines=block.split('\n');if(lines.every(function(l){return /^- /.test(l.trim())})){var ul=el('ul');lines.forEach(function(l){var li=el('li');appendInline(li,l.trim().slice(2));ul.append(li)});box.append(ul)}else if(/^## /.test(block)){box.append(el('h2',null,block.slice(3).trim()))}else{var p=el('p');appendInline(p,block);box.append(p)}});return box;
     }
     function notFound(){if(heading&&!heading.children.length){var h=el('div','story-post-head');h.append(el('p','eyebrow','LOVE COUNTRY STORY'),el('h1',null,'글을 찾을 수 없습니다'));heading.append(h)}var d=el('div','story-notfound');d.append(el('p',null,'주소가 잘못되었거나 삭제된 글일 수 있어요.'));var a=el('a',null,'글 목록으로 돌아가기');a.href='./';d.append(a);main.append(d)}
     function hrefOf(p){return p.url?String(p.url):'post.html?id='+encodeURIComponent(p.id||'')}
