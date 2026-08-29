@@ -3,10 +3,8 @@ const menuButton=document.querySelector('.menu-button');
 const nav=document.querySelector('.site-nav');
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const scrubHero=document.querySelector('.rd-scrub');
 const updateHeader=()=>{
-  const threshold=scrubHero?Math.max(40,scrubHero.offsetHeight-window.innerHeight+40):40;
-  header.classList.toggle('is-scrolled',window.scrollY>threshold);
+  header.classList.toggle('is-scrolled',window.scrollY>40);
 };
 updateHeader();
 window.addEventListener('scroll',updateHeader,{passive:true});
@@ -33,7 +31,6 @@ const observeReveals=(root=document)=>{
 
 const setFinalState=()=>{
   document.querySelectorAll('.reveal').forEach(el=>el.classList.add('is-visible'));
-  document.querySelectorAll('.counter').forEach(el=>el.textContent=el.dataset.target);
 };
 
 if(reducedMotion){
@@ -44,13 +41,6 @@ if(reducedMotion){
   }),{threshold:.14});
   observeReveals();
 
-  const counterObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
-    if(!entry.isIntersecting)return;
-    const el=entry.target;const target=Number(el.dataset.target);const duration=900;const started=performance.now();
-    const tick=now=>{const progress=Math.min((now-started)/duration,1);el.textContent=Math.round(target*(1-Math.pow(1-progress,3)));if(progress<1)requestAnimationFrame(tick)};
-    requestAnimationFrame(tick);counterObserver.unobserve(el);
-  }),{threshold:.7});
-  document.querySelectorAll('.counter').forEach(el=>counterObserver.observe(el));
 }
 
 const formatPrice=value=>new Intl.NumberFormat('ko-KR').format(value)+'원';

@@ -6,10 +6,10 @@
      클래스 이름은 전부 rdcart- 로 시작해서 내 사이트 CSS 와 겹치지 않습니다.
    ========================================================================== */
 :root {
-  --cart-bg:     #f4f0e5;   /* 서랍 바탕색 */
-  --cart-ink:    #123a2b;   /* 글자색 (버튼 바탕색으로도 씁니다) */
-  --cart-line:   rgba(18, 58, 43, .18);   /* 구분선 */
-  --cart-accent: #a98aad;   /* 뱃지·강조 */
+  --cart-bg:     #F6F1E7;   /* 서랍 바탕색 */
+  --cart-ink:    #1C1A17;   /* 글자색 (버튼 바탕색으로도 씁니다) */
+  --cart-line:   rgba(28, 26, 23, .18);   /* 구분선 */
+  --cart-accent: #C0603C;   /* 뱃지·강조 */
   --cart-radius: 0px;      /* 모서리 둥글기 */
   --cart-font:   "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
 }
@@ -25,14 +25,11 @@ html.rdcart-locked, body.rdcart-locked { overflow: hidden; }
   border: 0; border-radius: 999px;
   background: var(--cart-ink); color: var(--cart-bg);
   font: inherit; cursor: pointer;
-  transition: transform .2s ease, box-shadow .2s ease;
 }
 .rdcart-btn--float {
   position: fixed; top: 86px; right: clamp(16px, 2vw, 28px); z-index: 90;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, .18);
+  box-shadow: 0 6px 20px rgba(28, 26, 23, .18);
 }
-.rdcart-btn:active { transform: translateY(0); }
-@media (hover: hover) { .rdcart-btn:hover { transform: translateY(-1px); } }
 .rdcart-btn:focus-visible { outline: 2px solid var(--cart-accent); outline-offset: 3px; }
 .rdcart-btn svg { display: block; }
 
@@ -44,7 +41,7 @@ html.rdcart-locked, body.rdcart-locked { overflow: hidden; }
   background: var(--cart-accent); color: var(--cart-bg);
   font-family: var(--cart-font);
   font-size: 11px; font-weight: 800; line-height: 1;
-  transform: scale(0); transition: transform .25s cubic-bezier(.2, .8, .3, 1);
+  transform: scale(0);
 }
 .rdcart-btn--has .rdcart-btn__count { transform: scale(1); }
 
@@ -63,8 +60,8 @@ html.rdcart-locked, body.rdcart-locked { overflow: hidden; }
 
 .rdcart__back {
   position: absolute; inset: 0;
-  background: rgba(20, 18, 16, .48);
-  opacity: 0; transition: opacity .32s ease;
+  background: rgba(28, 26, 23, .48);
+  opacity: 0;
 }
 .rdcart--open .rdcart__back { opacity: 1; }
 
@@ -73,9 +70,8 @@ html.rdcart-locked, body.rdcart-locked { overflow: hidden; }
   height: 100%; width: min(400px, 92vw);
   display: flex; flex-direction: column;
   background: var(--cart-bg);
-  box-shadow: -18px 0 54px rgba(20, 18, 16, .2);
+  box-shadow: -18px 0 54px rgba(28, 26, 23, .2);
   transform: translateX(100%);
-  transition: transform .38s cubic-bezier(.2, .8, .3, 1);
 }
 .rdcart--open .rdcart__panel { transform: none; }
 
@@ -161,7 +157,6 @@ html.rdcart-locked, body.rdcart-locked { overflow: hidden; }
   border: 1.5px solid var(--cart-ink); border-radius: var(--cart-radius);
   font: inherit; font-size: 14px; font-weight: 700; letter-spacing: -.01em;
   text-decoration: none; cursor: pointer;
-  transition: opacity .2s ease;
 }
 @media (hover: hover) { .rdcart__act:hover { opacity: .78; } }
 .rdcart__act:focus-visible { outline: 2px solid var(--cart-accent); outline-offset: 2px; }
@@ -178,12 +173,4 @@ html.rdcart-locked, body.rdcart-locked { overflow: hidden; }
   .rdcart__line { gap: 9px; }
   .rdcart__kill { font-size: 11.5px; }
   .rdcart-btn--float { top: 76px; right: 16px; }
-}
-
-/* ───────── 움직임을 줄여 달라는 설정 존중 ───────── */
-@media (prefers-reduced-motion: reduce) {
-  .rdcart__panel, .rdcart__back, .rdcart-btn, .rdcart-btn__count, .rdcart__act {
-    transition: none !important;
-  }
-  .rdcart-btn:hover { transform: none; }
 }
