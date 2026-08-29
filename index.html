@@ -23,7 +23,7 @@
       <span></span><span></span><span class="sr-only">메뉴 열기</span>
     </button>
     <nav id="site-nav" class="site-nav" aria-label="주요 메뉴">
-      <a href="about.html">내 소개</a><a href="#products">제품</a><a href="#stories">이야기</a><a href="#contact">연락하기</a>
+      <a href="about.html">내 소개</a><a href="products.html">제품</a><a href="#stories">이야기</a><a href="#contact">연락하기</a>
     </nav>
   </header>
 
@@ -35,7 +35,7 @@
         <p class="eyebrow">뜨개 DIY 키트 · LOVE COUNTRY</p>
         <h1 id="hero-title">내 손으로 짓는<br>따뜻한 시간</h1>
         <p>첫 코부터 완성까지,<br>조급하지 않도록 함께합니다.</p>
-        <a class="line-link" href="#products">오늘의 키트 보기 <span aria-hidden="true">↓</span></a>
+        <a class="line-link" href="products.html">오늘의 키트 보기 <span aria-hidden="true">↗</span></a>
       </div>
       <span class="scroll-cue" aria-hidden="true">SCROLL</span>
     </section>
@@ -66,16 +66,9 @@
         <p class="eyebrow">오늘의 뜨개거리</p>
         <h2 id="products-title">천천히 완성하는<br>우리의 키트</h2>
       </div>
-      <div class="product-feature reveal">
-        <img src="assets/lovecountry-knitting-kit.png" alt="라일락 실과 원목 바늘이 담긴 첫 코 목도리 키트">
-        <div class="photo-scrim" aria-hidden="true"></div>
-        <div class="product-overlay"><p>FOR BEGINNER</p><h3>첫 코 목도리</h3><span>39,000원 · 난이도 처음</span></div>
-      </div>
-      <div class="product-pair">
-        <article class="product-card reveal"><img src="assets/lovecountry-pouch.png" alt="라일락 손뜨개 미니 파우치"><div><p>DAILY OBJECT</p><h3>포근한 미니 파우치</h3><span>32,000원</span></div></article>
-        <article class="product-card reveal"><img src="assets/lovecountry-coasters.png" alt="라일락 실로 뜨어진 동그란 코스터"><div><p>ONE DAY KIT</p><h3>하루 행복 코스터</h3><span>24,000원</span></div></article>
-      </div>
-      <p class="placeholder-note">※ 현재 제품명과 가격은 임시 정보입니다.</p>
+      <div class="catalog-grid featured-grid" data-product-list data-limit="3" aria-live="polite"></div>
+      <p class="product-status" data-product-status>제품을 불러오고 있어요.</p>
+      <a class="catalog-more reveal" href="products.html">전체 제품 보기 <span>↗</span></a>
     </section>
 
     <section id="stories" class="section stories" aria-labelledby="stories-title">
