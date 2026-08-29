@@ -28,9 +28,19 @@
     </nav>
   </header>
 
-  <main id="main" class="story-post-shell">
-    <div class="story-post-top"><a href="./">← 이야기 목록</a></div>
-    <div id="post-content" aria-live="polite"></div>
+  <main id="main">
+    <section class="story-post-hero" aria-label="이야기 머리말">
+      <img class="hero-image" src="../assets/lovecountry-knitting-kit.png" alt="라일락과 아이보리 실, 뜨개 도구로 구성된 러브컨츄리 키트">
+      <div class="hero-scrim" aria-hidden="true"></div>
+      <div class="story-post-hero-inner">
+        <a class="story-post-back" href="./">← 이야기 목록</a>
+        <div id="post-heading" aria-live="polite"></div>
+      </div>
+      <span class="scroll-cue" aria-hidden="true">READ</span>
+    </section>
+    <section class="story-post-shell">
+      <div id="post-content" aria-live="polite"></div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -41,14 +51,14 @@
 
   <script>
   (function(){
-    var main=document.getElementById('post-content');
+    var main=document.getElementById('post-content');var heading=document.getElementById('post-heading');
     function el(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=text;return n}
     function fmtDate(s){var d=new Date(s+'T00:00:00');if(isNaN(d))return s||'';return d.getFullYear()+'. '+(d.getMonth()+1)+'. '+d.getDate()+'.'}
     function renderBody(src){
       var box=el('div','story-post-body');var blocks=String(src||'').replace(/\r\n/g,'\n').split(/\n\s*\n/);
       blocks.forEach(function(block){block=block.trim();if(!block)return;var lines=block.split('\n');if(lines.every(function(l){return /^- /.test(l.trim())})){var ul=el('ul');lines.forEach(function(l){ul.append(el('li',null,l.trim().slice(2)))});box.append(ul)}else if(/^## /.test(block)){box.append(el('h2',null,block.slice(3).trim()))}else{box.append(el('p',null,block))}});return box;
     }
-    function notFound(){var d=el('div','story-notfound');d.append(el('h1',null,'글을 찾을 수 없습니다'),el('p',null,'주소가 잘못되었거나 삭제된 글일 수 있어요.'));var a=el('a',null,'글 목록으로 돌아가기');a.href='./';d.append(a);main.append(d)}
+    function notFound(){if(heading&&!heading.children.length){var h=el('div','story-post-head');h.append(el('p','eyebrow','LOVE COUNTRY STORY'),el('h1',null,'글을 찾을 수 없습니다'));heading.append(h)}var d=el('div','story-notfound');d.append(el('p',null,'주소가 잘못되었거나 삭제된 글일 수 있어요.'));var a=el('a',null,'글 목록으로 돌아가기');a.href='./';d.append(a);main.append(d)}
     function hrefOf(p){return p.url?String(p.url):'post.html?id='+encodeURIComponent(p.id||'')}
     function setAttr(sel,attr,val){var n=document.querySelector(sel);if(n)n.setAttribute(attr,val)}
     function addLd(obj){var ld=document.createElement('script');ld.type='application/ld+json';ld.textContent=JSON.stringify(obj);document.head.append(ld)}
@@ -63,10 +73,10 @@
     function renderSources(sources){var sec=el('section','story-sources');sec.append(el('h2',null,'참고·출처'));var ol=el('ol');sources.forEach(function(s){var li=el('li');if(s&&s.url){var a=el('a',null,String(s.title||s.url));a.href=String(s.url);a.rel='noopener';a.target='_blank';li.append(a)}else li.textContent=String(s&&s.title||s||'');ol.append(li)});sec.append(ol);return sec}
     function render(posts){
       var qs=new URLSearchParams(location.search);var id=qs.get('id')||qs.get('slug');posts=(Array.isArray(posts)?posts:[]).slice().sort(function(a,b){return String(b.date||'').localeCompare(String(a.date||''))});var idx=-1;posts.forEach(function(p,i){if(String(p.id)===id||(p.url&&String(p.url).replace(/\.html$/,'')===id))idx=i});if(idx<0){notFound();return}
-      var post=posts[idx];setMeta(post);var art=el('article','story-post-article reveal is-visible');var head=el('header','story-post-head');var t=el('time',null,fmtDate(post.date));t.setAttribute('datetime',String(post.date||''));head.append(t,el('h1',null,String(post.title||'(제목 없음)')));
+      var post=posts[idx];setMeta(post);var art=el('article','story-post-article reveal is-visible');var head=el('header','story-post-head reveal is-visible');head.append(el('p','eyebrow','LOVE COUNTRY STORY'));var t=el('time',null,fmtDate(post.date));t.setAttribute('datetime',String(post.date||''));var title=el('h1',null,String(post.title||'(제목 없음)'));title.id='story-post-title';head.append(t,title);
       if(post.author||(post.updated&&post.updated!==post.date)){var meta=el('div','story-post-meta');if(post.author)meta.append(el('span',null,String(post.author)));if(post.updated&&post.updated!==post.date)meta.append(el('span',null,'수정 '+fmtDate(post.updated)));head.append(meta)}
       if(Array.isArray(post.tags)&&post.tags.length){var tags=el('div','story-tags');post.tags.forEach(function(tg){tags.append(el('span','story-tag',String(tg)))});head.append(tags)}
-      art.append(head,el('hr','story-rule'),renderBody(post.body));var faq=Array.isArray(post.faq)?post.faq.filter(function(f){return f&&f.q&&f.a}):[];if(faq.length)art.append(renderFaq(faq));if(Array.isArray(post.sources)&&post.sources.length)art.append(renderSources(post.sources));
+      heading.append(head);art.append(renderBody(post.body));var faq=Array.isArray(post.faq)?post.faq.filter(function(f){return f&&f.q&&f.a}):[];if(faq.length)art.append(renderFaq(faq));if(Array.isArray(post.sources)&&post.sources.length)art.append(renderSources(post.sources));
       var prev=posts[idx+1],next=posts[idx-1];if(prev||next){var nav=el('nav','story-pn');nav.setAttribute('aria-label','다른 이야기');function cell(p,cls,label){if(!p){nav.append(el('span'));return}var a=el('a',cls);a.href=hrefOf(p);a.append(el('div','story-pn-dir',label),el('div','story-pn-title',String(p.title||'')));nav.append(a)}cell(prev,'prev','이전 글');cell(next,'next','다음 글');art.append(nav)}main.append(art);
     }
     fetch('posts.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(render).catch(notFound);

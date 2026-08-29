@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="../styles.css">
   <script src="../script.js" defer></script>
 </head>
-<body class="story-page">
+<body class="story-page story-index-page">
   <a class="skip-link" href="#main">본문으로 바로가기</a>
   <header class="site-header" data-header>
     <a class="brand" href="../index.html" aria-label="러브컨츄리 홈"><span class="brand-knot" aria-hidden="true"></span><span>러브컨츄리</span></a>
@@ -23,14 +23,18 @@
   </header>
 
   <main id="main">
-    <section class="story-hero" aria-labelledby="story-page-title">
-      <div class="reveal">
+    <section class="hero story-visual-hero" aria-labelledby="story-page-title">
+      <img class="hero-image" src="../assets/lovecountry-pouch.png" alt="라일락 실로 만든 손뜨개 파우치와 뜨개 도구">
+      <div class="hero-scrim" aria-hidden="true"></div>
+      <div class="hero-content reveal">
         <p class="eyebrow">NOTES FROM LOVE COUNTRY</p>
         <h1 id="story-page-title">한 코씩 쌓이는<br>우리의 이야기</h1>
+        <p>만드는 마음과 뜨개로 만난 사람들의<br>기록을 천천히 쌓아갑니다.</p>
+        <a class="line-link" href="#story-list">이야기 읽기 <span aria-hidden="true">↓</span></a>
       </div>
-      <p class="reveal">만드는 마음과 뜨개로 만난 사람들의<br>기록을 천천히 쌓아갑니다.</p>
+      <span class="scroll-cue" aria-hidden="true">SCROLL</span>
     </section>
-    <section class="story-index-section" aria-label="블로그 글 목록">
+    <section id="story-list" class="story-index-section" aria-label="블로그 글 목록">
       <div class="story-index-meta reveal"><span>JOURNAL</span><a href="admin.html">글 관리 ↗</a></div>
       <ul class="story-index-list" id="list" aria-live="polite"></ul>
     </section>
