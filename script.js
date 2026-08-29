@@ -48,10 +48,18 @@ if(reducedMotion){
 }
 
 const formatPrice=value=>new Intl.NumberFormat('ko-KR').format(value)+'원';
+const FEATURED_PRODUCT_NAME='러브컨츄리 뜨개가방 코바늘 가방뜨기 뜨개질 diy 데일리 빅백';
+const getCuratedProducts=products=>{
+  const featured=products.find(product=>product.name===FEATURED_PRODUCT_NAME);
+  const rest=products.filter(product=>product!==featured).slice(0,5);
+  return featured?[featured,...rest]:products.slice(0,6);
+};
 const addProductStructuredData=products=>{
-  const list=document.querySelector('[data-product-list]');if(!list||!products.length)return;
-  const limit=Number(list.dataset.limit)||products.length;
-  const visibleProducts=products.slice(0,limit);
+  if(!products.length)return;
+  const curatedPage=document.querySelector('[data-product-feature]');
+  const list=document.querySelector('[data-product-list]');
+  if(!curatedPage&&!list)return;
+  const visibleProducts=curatedPage?getCuratedProducts(products):products.slice(0,Number(list.dataset.limit)||products.length);
   const data={
     '@context':'https://schema.org',
     '@type':'ItemList',
@@ -81,21 +89,39 @@ const createProductCard=product=>{
   const imageLink=document.createElement('a');imageLink.className='catalog-image';imageLink.href=product.url;imageLink.target='_blank';imageLink.rel='noopener noreferrer';imageLink.setAttribute('aria-label',product.name+' 구매 페이지 열기');
   const image=document.createElement('img');image.src=product.image;image.alt=product.name;image.loading='lazy';image.decoding='async';imageLink.append(image);
   const body=document.createElement('div');body.className='catalog-body';
-  const kicker=document.createElement('p');kicker.className='catalog-kicker';kicker.textContent='LOVE COUNTRY';
+  const kicker=document.createElement('p');kicker.className='catalog-kicker';kicker.textContent=product.tagline||'오늘의 뜨개거리';
   const name=document.createElement('h2');name.textContent=product.name;
   const price=document.createElement('p');price.className='catalog-price';price.textContent=formatPrice(product.price);
   const buy=document.createElement('a');buy.className='buy-button';buy.href=product.url;buy.target='_blank';buy.rel='noopener noreferrer';buy.innerHTML='<span>구매하기</span><span aria-hidden="true">↗</span>';
   body.append(kicker,name,price,buy);card.append(imageLink,body);return card;
 };
 
+const createFeaturedProduct=product=>{
+  const article=document.createElement('article');article.className='curated-feature-card reveal';
+  const imageLink=document.createElement('a');imageLink.className='curated-feature-image';imageLink.href=product.url;imageLink.target='_blank';imageLink.rel='noopener noreferrer';imageLink.setAttribute('aria-label',product.name+' 구매 페이지 열기');
+  const image=document.createElement('img');image.src=product.image;image.alt=product.name;image.decoding='async';imageLink.append(image);
+  const body=document.createElement('div');body.className='curated-feature-body';
+  const label=document.createElement('p');label.className='catalog-kicker';label.textContent='EDITOR\u2019S PICK';
+  const tagline=document.createElement('p');tagline.className='curated-tagline';tagline.textContent=product.tagline||'초보자도 할 수 있는 뜨개 패키지';
+  const name=document.createElement('h2');name.textContent=product.name;
+  const price=document.createElement('p');price.className='curated-feature-price';price.textContent=formatPrice(product.price);
+  const buy=document.createElement('a');buy.className='curated-buy-button';buy.href=product.url;buy.target='_blank';buy.rel='noopener noreferrer';buy.innerHTML='<span>이 키트 구매하기</span><span aria-hidden="true">↗</span>';
+  body.append(label,tagline,name,price,buy);article.append(imageLink,body);return article;
+};
+
 const loadProducts=async()=>{
-  const lists=document.querySelectorAll('[data-product-list]');if(!lists.length)return;
+  const lists=document.querySelectorAll('[data-product-list]');
+  const featureSlots=document.querySelectorAll('[data-product-feature]');
+  const curatedLists=document.querySelectorAll('[data-curated-product-list]');
+  if(!lists.length&&!featureSlots.length&&!curatedLists.length)return;
   const statuses=document.querySelectorAll('[data-product-status]');
   try{
     const response=await fetch('products.json');if(!response.ok)throw new Error('product data');
     const data=await response.json();const products=data.products;addProductStructuredData(products);
     lists.forEach(list=>{const limit=Number(list.dataset.limit)||products.length;products.slice(0,limit).forEach(product=>list.append(createProductCard(product)));observeReveals(list)});
-    document.querySelectorAll('[data-product-count]').forEach(el=>el.textContent=products.length+' ITEMS');
+    const curated=getCuratedProducts(products);const featured=curated[0];const rest=curated.slice(1);
+    featureSlots.forEach(slot=>{if(featured)slot.append(createFeaturedProduct(featured));observeReveals(slot)});
+    curatedLists.forEach(list=>{const limit=Number(list.dataset.limit)||5;rest.slice(0,limit).forEach(product=>list.append(createProductCard(product)));observeReveals(list)});
     statuses.forEach(el=>el.textContent='');
   }catch(error){statuses.forEach(el=>el.textContent='제품을 불러오지 못했어요. 잠시 후 다시 시도해주세요.')}
 };
