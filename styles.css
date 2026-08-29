@@ -5,7 +5,7 @@
   --pad: clamp(24px, 6vw, 96px);
   --max: 1280px;
   --reading: 680px;
-  --serif: "Noto Serif KR", "Batang", serif;
+  --serif: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
   --sans: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
   --ivory: var(--cream);
   --green: var(--ink);
@@ -49,7 +49,7 @@ p { max-width: 40em; }
 .contact-page .site-header.is-scrolled,
 .about-page .site-header.is-scrolled { padding-top: 17px; padding-bottom: 17px; background: var(--cream); color: var(--ink); }
 .products-page .site-header { color: var(--ink); }
-.brand { display: flex; align-items: center; gap: 13px; font-family: var(--serif); font-size: 16px; font-weight: 600; letter-spacing: -.04em; }
+.brand { display: flex; align-items: center; gap: 13px; font-family: var(--serif); font-size: 16px; font-weight: 800; letter-spacing: -.05em; }
 .brand-knot { position: relative; width: 20px; height: 20px; border: 1.5px solid currentColor; border-radius: 50%; }
 .brand-knot::after { content: ""; position: absolute; left: 10px; top: 6px; width: 26px; height: 8px; border-bottom: 1.5px solid currentColor; border-radius: 50%; transform: rotate(-15deg); }
 .site-nav { display: flex; gap: 34px; font-size: 13px; font-weight: 500; }
@@ -72,9 +72,9 @@ h1, h2, h3, blockquote, .contact-action strong { font-family: var(--serif); }
 .about-hero-copy h1,
 .story-post-head h1 {
   margin: 0;
-  font-weight: 400;
+  font-weight: 900;
   line-height: 1.18;
-  letter-spacing: -.055em;
+  letter-spacing: -.075em;
 }
 .section { min-height: 80vh; padding: 15vh var(--pad); }
 .section-intro { width: min(100%, var(--max)); margin: 0 auto 12vh; }
@@ -281,6 +281,32 @@ h1, h2, h3, blockquote, .contact-action strong { font-family: var(--serif); }
 .site-footer > p { margin: 48px 0 12vh; font-family: var(--serif); font-size: 22px; line-height: 1.7; }
 .site-footer > div { display: flex; gap: 28px; padding-top: 22px; border-top: 1px solid var(--ink); font-size: 10px; letter-spacing: .1em; }
 .site-footer > div span { margin-right: auto; }
+
+/* Solid sans title system */
+.about-copy .lead,
+.curated-tagline,
+.contact-link,
+.story-empty strong,
+.story-pn-title,
+.site-footer > p { font-weight: 700; letter-spacing: -.045em; }
+.catalog-body h2,
+.curated-feature-body h2,
+.story h3,
+.timeline-list h3,
+.story-index-copy h2,
+.story-post-body h2,
+.story-faq h2 { font-weight: 800; letter-spacing: -.05em; }
+.number-item strong,
+.curated-heading h2,
+.portrait-placeholder > span,
+.first-person h2,
+.learning h2,
+.customer h2,
+.promise h2,
+.quote-section blockquote,
+.contact-action strong { font-weight: 900; letter-spacing: -.075em; }
+.quote-section blockquote { line-height: 1.35; }
+.contact-action strong { line-height: 1.25; }
 
 /* The only scroll-triggered motion */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s ease, transform .75s ease; }
