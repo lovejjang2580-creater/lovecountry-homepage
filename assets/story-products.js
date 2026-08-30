@@ -19,7 +19,7 @@
     link.href = product.url;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
-    link.setAttribute('aria-label', product.name + ' ?쒗뭹 ?섏씠吏 ?닿린');
+    link.setAttribute('aria-label', product.name + ' 제품 페이지 열기');
 
     var image = document.createElement('img');
     image.src = product.image;
@@ -32,7 +32,7 @@
 
     var label = document.createElement('span');
     label.className = 'story-product-card-label';
-    label.textContent = '異붿쿇 ?쒗뭹';
+    label.textContent = '추천 제품';
 
     var name = document.createElement('span');
     name.className = 'story-product-card-name';
@@ -40,7 +40,7 @@
 
     var cta = document.createElement('span');
     cta.className = 'story-product-card-cta';
-    cta.textContent = '?쒗뭹 蹂대윭 媛湲?;
+    cta.textContent = '제품 보러 가기';
 
     copy.append(label, name, cta);
     link.append(image, copy);
@@ -84,7 +84,7 @@
         applyWhenReady();
       })
       .catch(function () {
-        // ?쒗뭹 ?뺣낫媛 ?녾굅???ㅽ듃?뚰겕媛 ?딄꺼??蹂몃Ц 留곹겕??洹몃?濡??ъ슜?????덉뒿?덈떎.
+        // 제품 정보가 없거나 네트워크가 끊겨도 본문 링크는 그대로 사용할 수 있습니다.
       });
   }
 
