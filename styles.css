@@ -247,7 +247,7 @@ h1, h2, h3, blockquote, .contact-action strong { font-family: var(--serif); }
 .story-post-head time { display: block; margin-bottom: 18px; font-size: 12px; letter-spacing: .1em; }
 .story-post-head h1 { max-width: 15ch; font-size: clamp(48px,6vw,86px); }
 .story-post-meta { margin-top: 22px; font-size: 12px; }
-.story-post-meta span + span::before { content: " 쨌 "; }
+.story-post-meta span + span::before { content: " · "; }
 .story-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
 .story-tag { padding: 4px 11px; border: 1px solid currentColor; font-size: 10px; letter-spacing: .08em; }
 .story-post-shell { width: min(100% - 48px,var(--reading)); min-height: 70vh; margin: 0 auto; padding: 15vh 0; }
@@ -266,7 +266,7 @@ h1, h2, h3, blockquote, .contact-action strong { font-family: var(--serif); }
 .story-product-card-label { display: block; margin-bottom: 7px; color: var(--terra); font-size: 10px; font-weight: 700; letter-spacing: .13em; }
 .story-product-card-name { display: -webkit-box; overflow: hidden; color: var(--ink); font-size: 15px; font-weight: 700; line-height: 1.55; text-decoration: none; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 .story-product-card-cta { display: inline-block; margin-top: 9px; color: var(--ink); font-size: 12px; font-weight: 600; }
-.story-product-card-cta::after { content: "  ??; color: var(--terra); }
+.story-product-card-cta::after { content: "  ↗"; color: var(--terra); }
 .story-faq { margin-top: 10vh; }
 .story-faq h2 { font-size: 26px; font-weight: 400; }
 .story-faq details { padding: 18px 0; border-top: 1px solid var(--ink); }
