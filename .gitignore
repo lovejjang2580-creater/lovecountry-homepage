@@ -1,0 +1,16 @@
+# macOS metadata files
+.DS_Store
+**/.DS_Store
+
+# Local secrets and environment variables
+.env
+.env.*
+!.env.example
+
+# Common local caches
+node_modules/
+.cache/
+dist/
+
+# Local source media stored in Google Drive
+assets/raw.mp4
