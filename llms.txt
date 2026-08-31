@@ -31,6 +31,7 @@
 
 ## 블로그 주제
 
+- [뜨개질 DIY 키트는 초보자도 할 수 있나요?](https://lovecountry-homepage.vercel.app/story/beginner-diy-knitting-kit.html): 초보자가 작은 작품, 재료 구성, 안내 방식을 확인해 첫 DIY 키트를 고르는 방법
 - 단체 수업용 뜨개 패키지 선택법
 - 뜨개 초보자에게 적합한 첫 작품
 - 초보자가 자주 하는 뜨개 실수와 확인 방법
