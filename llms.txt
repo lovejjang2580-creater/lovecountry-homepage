@@ -31,6 +31,7 @@
 
 ## 이야기(블로그)
 
+- [초보자가 다루기 편한 뜨개실은 어떤 실인가요?](https://lovecountry-homepage.vercel.app/story/beginner-friendly-yarn.html): 작품 안내와 라벨, 시편을 기준으로 첫 뜨개실을 고르는 방법
 - [코바늘 호수가 다르면 완성품이 어떻게 달라지나요?](https://lovecountry-homepage.vercel.app/story/crochet-hook-size-finish.html): 같은 실에서 바늘 호수에 따라 달라지는 코의 크기와 원단의 느낌을 확인하는 방법
 - [뜨개질 DIY 키트는 초보자도 할 수 있나요?](https://lovecountry-homepage.vercel.app/story/beginner-diy-knitting-kit.html): 초보자가 작은 작품, 재료 구성, 안내 방식을 확인해 첫 DIY 키트를 고르는 방법
 
