@@ -31,6 +31,7 @@
 
 ## 블로그 주제
 
+- [뜨개질 DIY 키트에 필요한 준비물이 모두 들어 있나요?](https://lovecountry-homepage.vercel.app/story/diy-knitting-kit-contents.html): 실·바늘·부자재·안내의 포함 범위를 확인해 뜨개 키트를 준비하는 방법
 - [뜨개질 키트 하나를 완성하는 데 얼마나 걸리나요?](https://lovecountry-homepage.vercel.app/story/knitting-kit-completion-time.html): 작품 크기·반복 과정·익숙한 정도를 기준으로 첫 뜨개 키트의 시간을 계획하는 방법
 - [뜨개질 DIY 키트는 초보자도 할 수 있나요?](https://lovecountry-homepage.vercel.app/story/beginner-diy-knitting-kit.html): 초보자가 작은 작품, 재료 구성, 안내 방식을 확인해 첫 DIY 키트를 고르는 방법
 
