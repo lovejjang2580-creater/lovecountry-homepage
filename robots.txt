@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
 
+Disallow: /story/admin.html
+
 Sitemap: https://lovecountry-homepage.vercel.app/sitemap.xml
